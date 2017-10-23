@@ -135,6 +135,11 @@ message Part {
 	int32 position = 6;
 }
 
+message PhotoTitle {
+	string id = 1;
+	string title = 2;
+}
+
 message Host {
 	string objType = 1;
 	string id = 2;
