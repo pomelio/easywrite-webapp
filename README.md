@@ -1,4 +1,4 @@
-easywrite-webapp is a [React](https://reactjs.org/) and [Redux](http://redux.js.org/) webapp which retrieve data from [easywrite](http://jay.veryveryhard.com) platform.
+easywrite-webapp is a [React](https://reactjs.org/) [React Router](https://reacttraining.com/react-router/) and [Redux](http://redux.js.org/) webapp which retrieve data from [easywrite](http://jay.veryveryhard.com) platform.
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 
