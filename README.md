@@ -207,7 +207,6 @@ when the value of height is absent, the value of height is matched ratio from wi
 
 ## How to Run
 * `npm start` open url http://localhost:3006
-![Alt text](./screenshot.png "screenshot")
 
 
 ## Updating to New Releases
