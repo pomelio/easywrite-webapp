@@ -55,7 +55,7 @@ class Article extends React.Component {
   
   	render() {
 		let {spaceNode, articleNode, history} = this.props;
-    	LOG_ENABLED && log('Article:render');
+		LOG_ENABLED && log('Article:render');
 		let article = articleNode.article;
 		if (!article) {
 			return null;
@@ -63,11 +63,11 @@ class Article extends React.Component {
 		let elapsed = moment(article.createTime).fromNow();
 		let parts = this.props.articleNode.parts;
 		
-    	let space = spaceNode.space;
-    	let name = space.name;
+		let space = spaceNode.space;
+		let name = space.title;
 
-    	let spacePictureURL = '/static/images/spacehead60.jpeg';
-    	if (space && space.pictureID) {
+		let spacePictureURL = '/static/images/spacehead60.jpeg';
+		if (space && space.pictureID) {
 			spacePictureURL = WEB_ROOT + '/1/photo/' + space.pictureID + '?resize=60X60';
 		}
 
@@ -83,7 +83,7 @@ class Article extends React.Component {
 				}
 				return (
 					<p className={['flex-center','flex-vertical'].join(' ')} key={photoID} >
-						<SmallImage  photoID={photoID} width="big" />
+						<SmallImage  photoID={photoID} />
 						{title}
 					</p>
 				);
@@ -91,8 +91,8 @@ class Article extends React.Component {
 			
 			return (
 				<div key={part.id}>
-					<p dangerouslySetInnerHTML={{__html: part.content}}/>
-         			{photoListEle}
+					<p dangerouslySetInnerHTML={{__html: part.content}} />
+		 			{photoListEle}
 				</div>
 			);
 
@@ -104,48 +104,48 @@ class Article extends React.Component {
 				<div className="flex-middle"><span style={{marginTop:30, marginRight: 30}} onClick={event => {
 					event.preventDefault();
 					let space = spaceNode.space;
-            		selectSpace(history, space);
-        		}}><img src={'/images/back.svg'} alt="back" /></span><h4 style={{display: 'inline-block'}}>{article.title}</h4></div>
-          		<div className='flex-left flex-middle top-gap' onClick={ event => {
-            			event.preventDefault();
-            			let space = spaceNode.space;
+					selectSpace(history, space);
+				}}><img src={'/images/back.svg'} alt="back" /></span><h4 style={{display: 'inline-block'}}>{article.title}</h4></div>
+				<div className='flex-left flex-middle top-gap' onClick={ event => {
+						event.preventDefault();
+						let space = spaceNode.space;
 						selectSpace(history, space);
-            		}
-          		}>
-            		<div className='unit-0'><img alt={'article'} src={spacePictureURL}/></div>
-            		<div className='unit' style={{marginLeft:16}}>
-              			<div className='text-small'>{name}</div>
-              			<address className='text-small'>{elapsed}</address>
-            		</div>
-          		</div>
-          		{partsEle}
+					}
+				}>
+					<div className='unit-0'><img alt={'article'} src={spacePictureURL} style={{borderRadius: '50%'}}/></div>
+					<div className='unit' style={{marginLeft:16}}>
+						<div className='text-small'>{name}</div>
+						<address className='text-small'>{elapsed}</address>
+					</div>
+				</div>
+				{partsEle}
 				<div className="flex-center top-gap-big">
-                	<span className="text-danger text-small">【易写】App</span>
-            	</div>
-      		</div>
-    	);
+					<span className="text-danger text-small">【易写】App</span>
+				</div>
+			</div>
+		);
 	}
 
 	_init = () => {
-    	//let match = this.context.match();
-    	let {match, spaceNode} = this.props;
+		//let match = this.context.match();
+		let {match, spaceNode} = this.props;
 		let articleID = match.params.articleID;
 		let space = spaceNode.space;
 		let articles = spaceNode.articles;
-    	if (space && articles && articles.length > 0) {
+		if (space && articles && articles.length > 0) {
 			let article = articles.find(a => a.id === articleID);
 			this.props.initArticle(article);
 			return article;
-    	} else {
-    		return this.props.fetchArticle(articleID).then(spaceArticle => {
+		} else {
+			return this.props.fetchArticle(articleID).then(spaceArticle => {
 				this.props.initSpace(spaceArticle.space);
 				this.props.initArticle(spaceArticle.article);
-          		return spaceArticle.article;
-    		}).catch(err => {
-        		LOG_ENABLED && log('Error Article:_init');
-    		});
+		  		return spaceArticle.article;
+			}).catch(err => {
+				LOG_ENABLED && log('Error Article:_init');
+			});
    		}
-    
+	
   	}
 
 }

@@ -6,11 +6,13 @@ const ActionTypes = {
 	INIT_ARTICLE: 'INIT_ARTICLE',
 	RESET_ARTICLE: 'RESET_ARTICLE',
 	SHOW_BIG_PICTURE: 'SHOW_BIG_PICTURE',
+
+	COOKIE_AUTH: 'COOKIE_AUTH',
 };
 const ChangeEvent = 'change';
 
 const DEBUG = true;
-const WEB_ROOT = DEBUG ? 'http://jay.veryveryhard.com' : '';
+const WEB_ROOT = DEBUG ? 'http://localhost:3006/' : '';
 
 
 const ObjectType = {
@@ -19,10 +21,13 @@ const ObjectType = {
 	TYPE_USER: 'USER',
 };
 
+const COOKIE_AUTH = 'vvhcdsfasdf';
+
 module.exports = {
 	DEBUG,
 	ChangeEvent,
 	ActionTypes,
 	ObjectType,
 	WEB_ROOT,
+	COOKIE_AUTH,
 };

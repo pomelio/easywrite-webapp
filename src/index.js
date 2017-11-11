@@ -7,6 +7,8 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 import api from './API';
 import App from './App';
+import Constants from './Constants';
+const ActionTypes = Constants.ActionTypes;
 import './index.css';
 
 const middleware = [ thunk.withExtraArgument(api) ];
@@ -18,6 +20,14 @@ const store = createStore(
 	reducer,
 	applyMiddleware(...middleware)
 )
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const authCookie = cookies.get(Constants.COOKIE_AUTH);
+if (!authCookie) {
+	let type = ActionTypes.COOKIE_AUTH;
+	store.dispatch({type, authCookie})
+}
 
 
 render(

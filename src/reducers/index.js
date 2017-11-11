@@ -25,3 +25,7 @@ export const getSpaceArticle = (state, id) => {
 export const getSession = state => {
 	return state.session;
 };
+
+export const getCookieAuth = state => {
+	return state.session.cookieAuth;
+}

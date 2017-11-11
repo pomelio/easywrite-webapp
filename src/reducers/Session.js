@@ -8,6 +8,7 @@ import {
 import Types from '../Types';
 
 var initialState = {
+	cookieAuth: null,
 	user: null,
 	lat: 0,
 	lng: 0,
@@ -19,6 +20,8 @@ var initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
+		case ActionTypes.COOKIE_AUTH:
+			return onSetCookieAuth(state, action.cookieAuth);
 		case ActionTypes.SET_LOADING:
 			return onSetLoading(state, action.isLoading);
 		case ActionTypes.SET_SESSION_SETTINGS:
@@ -40,4 +43,8 @@ function onSetSettings(state, settings: Types.Settings) {
 
 function onSetLoading(state, isLoading: boolean) {
 	return {...state, isLoading};
+}
+
+function onSetCookieAuth(state, cookieAuth: string) {
+	return {...state, cookieAuth};
 }

@@ -7,6 +7,9 @@ import {
   Switch,
 } from 'react-router-dom'
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const authCookie = cookies.get(Constants.COOKIE_AUTH);
 
 import './App.css';
 import Space from './screens/Space';
@@ -22,6 +25,12 @@ history.listen(function (location) {
 
 class App extends Component {
 
+  componentDidMount() {
+		LOG_ENABLED && log('Space:componentDidMount');
+		this._isMounted = true;
+		this._init();
+	}
+
   render() {
     return (
       <div className="flex-center" >
@@ -34,6 +43,10 @@ class App extends Component {
         </Router>
       </div>
     );
+  }
+
+  _init = () => {
+    
   }
 }
 

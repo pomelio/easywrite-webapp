@@ -6,6 +6,7 @@ import '../App.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
+
 import { getSpace} from '../reducers';
 import {fetchArticles,  initSpace, fetchSpaceByHost, fetchSpace} from '../Actions';
 import {WEB_ROOT} from '../Constants';
@@ -13,6 +14,8 @@ import {WEB_ROOT} from '../Constants';
 
 import SmallImage from './components/SmallImage';
 import {log, LOG_ENABLED} from '../Logger';
+
+
 
 class Space extends React.Component {
 	constructor(props) {
@@ -78,14 +81,25 @@ class Space extends React.Component {
 		LOG_ENABLED && log('Space:render');
 		let spaceNode = this.props.spaceNode;
 		let space = spaceNode.space;
-
-		let spacePictureURL = '/static/images/spacehead.jpeg';
-    	if (space && space.pictureID) {
-			spacePictureURL = WEB_ROOT + '/1/photo/' + space.pictureID + '?resize=800'
+		if (!space) {
+			return null;
 		}
+
+		let name = space.title;
+
+		let spacePictureURL = '/static/images/spacehead60.jpeg';
+		if (space && space.pictureID) {
+			spacePictureURL = WEB_ROOT + '/1/photo/' + space.pictureID + '?resize=60X60';
+		}
+
 		
 		let spaceHeadEle = (
-			<div className="container-wider" style={{backgroundImage: 'url(' + spacePictureURL + ')', height:'80px',  width:'80px'}}></div>
+			<div className='flex-left flex-middle top-gap' >
+				<div className='unit-0'><img alt={'article'} src={spacePictureURL} style={{borderRadius: '50%'}}/></div>
+				<div className='unit' style={{marginLeft:16}}>
+					<div className='text-small'>{name}</div>
+				</div>
+			</div>
 		);
 		let moreEle = null;
 		if (!spaceNode.noMore) {
